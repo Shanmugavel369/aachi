@@ -247,7 +247,7 @@ const Home = () => {
 
             {/* Bottom Video */}
             <motion.video
-              src="/h3.mp4"
+              src="assets/h3.mp4"
               autoPlay
               loop
               muted
@@ -274,7 +274,7 @@ const Home = () => {
             />
 
             <motion.video
-              src= "/v2.mp4"
+              src= "assets/v2.mp4"
               autoPlay
               loop
               muted
@@ -409,7 +409,7 @@ const Home = () => {
             </div>
             <div>
               <video
-                src="/h2.mp4"
+                src="assets/h2.mp4"
                 autoPlay
                 loop
                 muted
