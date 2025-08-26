@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import logo from "../src/assets/Logos/Aachi-logo.png";
+import logo from "../src/asset/Logos/Aachi-logo.png";
 
 export default function EntryScreen() {
   return (

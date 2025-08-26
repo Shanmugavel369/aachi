@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import Logo from "../assets/Logos/Aachi-logo.png";
+import Logo from "../asset/Logos/Aachi-logo.png";
 
 const Topheader = () => {
   const [aboutOpen, setAboutOpen] = useState(false);

@@ -3,7 +3,7 @@
 import React from "react"
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion"
-import Logo from "../assets/Logos/Aachi-logo.png" // Use your logo path
+import Logo from "../asset/Logos/Aachi-logo.png" // Use your logo path
 
 export default function Footer() {
   const socialLinks = [
