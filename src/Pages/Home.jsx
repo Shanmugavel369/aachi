@@ -424,7 +424,6 @@ const Home = () => {
       </section>
 
       <TimelineSection />
-      <div>hello</div>
     </div>
   );
 };
