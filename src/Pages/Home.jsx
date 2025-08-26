@@ -3,9 +3,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AbiSir from "../assets/photo/MD.jpg";
 import I from "../assets/photo/i.png";
-import video from "../../public/v2.mp4";
-import video2 from "../../public/h2.mp4";
-import video3 from "../../public/h3.mp4";
 import image1 from "../assets/photo/h1.jpg";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
@@ -250,7 +247,7 @@ const Home = () => {
 
             {/* Bottom Video */}
             <motion.video
-              src={video3}
+              src="/h3.mp4"
               autoPlay
               loop
               muted
@@ -277,7 +274,7 @@ const Home = () => {
             />
 
             <motion.video
-              src={video}
+              src= "/v2.mp4"
               autoPlay
               loop
               muted
@@ -412,7 +409,7 @@ const Home = () => {
             </div>
             <div>
               <video
-                src={video2}
+                src="/h2.mp4"
                 autoPlay
                 loop
                 muted
