@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+html, body, #root {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+
+body {
+  font-family: "Lora", "serif";
+  font-size: 16px;
+  line-height: 1.6;
+  color: #2c3e50; 
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Merriweather", serif;
+  color: #1a252f; /* stronger dark tone for headings */
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+.perspective {
+  perspective: 1000px;
+}
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+.card-inner {
+  transition: transform 0.7s;
+  transform-style: preserve-3d;
+}
+.card-hover:hover .card-inner {
+  transform: rotateY(180deg);
+}
+.card-front, .card-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  border-radius: 0.5rem;
+}
+.card-front {
+  z-index: 2;
+}
+.card-back {
+  transform: rotateY(180deg);
+  z-index: 1;
+}
