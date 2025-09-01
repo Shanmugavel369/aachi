@@ -2,12 +2,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import e4 from "../src/asset/timeline/e4.png";
-import e2 from "../src/asset/timeline/e2.png"
-import e3 from "../src/asset/timeline/e3.png"
-import e1 from "../src/asset/timeline/e1.png"
-import e6 from "../src/asset/timeline/e6.png"
-import e5 from "../src/asset/timeline/e5.png"
+import e4 from "../asset/timeline/e4.png";
+import e2 from "../asset/timeline/e2.png"
+import e3 from "../asset/timeline/e3.png"
+import e1 from "../asset/timeline/e1.png"
+import e6 from "../asset/timeline/e6.png"
+import e5 from "../asset/timeline/e5.png"
 
 
 const imageCards = [

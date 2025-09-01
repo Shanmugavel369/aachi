@@ -6,8 +6,8 @@ import I from "../asset/photo/i.png";
 import image1 from "../asset/photo/h1.jpg";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import TimelineSection from "../../Reuse/TimeLine";
-import MidSection from "../../Reuse/MidSection";
+import TimelineSection from "../Reuse/TimeLine";
+import MidSection from "../Reuse/MidSection";
 
 
 gsap.registerPlugin(ScrollTrigger);

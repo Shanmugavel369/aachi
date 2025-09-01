@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import t1 from "../src/asset/timeline/t1.jpg";
-import t2 from "../src/asset/timeline/t2.jpg";
-import t3 from "../src/asset/timeline/t3.jpg";
-import t4 from "../src/asset/timeline/t4.jpg";
-import t5 from "../src/asset/timeline/t5.jpg";
-import t6 from "../src/asset/timeline/t6.png";
-import t7 from "../src/asset/timeline/t7.jpg";
+import t1 from "../asset/timeline/t1.jpg";
+import t2 from "../asset/timeline/t2.jpg";
+import t3 from "../asset/timeline/t3.jpg";
+import t4 from "../asset/timeline/t4.jpg";
+import t5 from "../asset/timeline/t5.jpg";
+import t6 from "../asset/timeline/t6.png";
+import t7 from "../asset/timeline/t7.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
