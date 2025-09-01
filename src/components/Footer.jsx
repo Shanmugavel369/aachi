@@ -1,31 +1,28 @@
-"use client"
-
-import React from "react"
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion"
-import Logo from "../asset/Logos/Aachi-logo.png" // Use your logo path
+import Logo from "../asset/Logos/Aachi-logo.png"
+import { FaFacebookF, FaTwitter, FaPinterestP, FaInstagram, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
-  const socialLinks = [
-    { name: "Facebook", icon: <i className="fab fa-facebook-f" />, href: "#" },
-    { name: "Twitter", icon: <i className="fab fa-twitter" />, href: "#" },
-    { name: "Pinterest", icon: <i className="fab fa-pinterest-p" />, href: "#" },
-    { name: "Instagram", icon: <i className="fab fa-instagram" />, href: "#" },
-    { name: "YouTube", icon: <i className="fab fa-youtube" />, href: "#" },
-  ]
+ const socialLinks = [
+  { name: "Facebook", icon: <FaFacebookF />, href: "#" },
+  { name: "Twitter", icon: <FaTwitter />, href: "#" },
+  { name: "Instagram", icon: <FaInstagram />, href: "#" },
+  { name: "YouTube", icon: <FaYoutube />, href: "#" },
+];
 
   const quickLinks = [
     { title: "Home", href: "#" },
     { title: "About Us", href: "#" },
-    { title: "Achievements", href: "#" },
-    { title: "Brand", href: "#" },
-    { title: "Leadership", href: "#" },
-    { title: "Ventures", href: "#" },
-    { title: "HoReCa", href: "#" },
+    { title: "Infrastructure", href: "#" },
+    { title: "Gallery", href: "#" },
+    { title: "Careers", href: "#" },
+    { title: "Shop", href: "#" },
+    { title: "Contact", href: "#" },
   ]
 
   return (
-    <footer className="bg-white border-t-8 border-red-600 relative z-10">
+    <footer className="bg-white border-t-8 mt-4 border-red-600 relative z-10">
       <div className="max-w-7xl mx-auto px-6 py-16 lg:py-24 text-gray-800">
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -50,7 +47,7 @@ export default function Footer() {
                   aria-label={name}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-full bg-red-600 text-white shadow-lg hover:bg-red-700 transition-colors"
+                  className="p-3 bg-red-600 rounded-full shadow-lg hover:bg-red-700 transition-colors"
                   whileHover={{ scale: 1.15 }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -98,10 +95,8 @@ export default function Footer() {
     Aachi Masala Corporate Office,<br />
     Plot No. 16, 17, First Street, Thangam Colony, Anna Nagar West, Chennai, <br />
     Tamil Nadu 600040<br />
-    <span className="block mt-2">Phone: <a href="tel:+919150074448" className="hover:text-red-600">+91 9150074448</a></span>
-    <span className="block">+91 9840050423 (6.30 AM to 9.00 PM)</span>
-    <span className="block mb-2">+91 9884041316 (6.30 AM to 9.00 PM)</span>
-    <span className="block">customercare@aachigroup.com</span>
+    <span className="block">Working Hours (6.30 AM to 9.00 PM)</span>
+    <span className="block">Mail: customercare@aachigroup.com</span>
   </address>
   
 </motion.div>

@@ -1,213 +1,166 @@
-  const [hasSettled, setHasSettled] = useState(false);
+import React, { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import t1 from "../src/asset/timeline/t1.jpg";
+import t2 from "../src/asset/timeline/t2.jpg";
+import t3 from "../src/asset/timeline/t3.jpg";
+import t4 from "../src/asset/timeline/t4.jpg";
+import t5 from "../src/asset/timeline/t5.jpg";
+import t6 from "../src/asset/timeline/t6.png";
+import t7 from "../src/asset/timeline/t7.jpg";
 
-  // Mouse position normalized inside hero section [0,1]
-  const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 });
+gsap.registerPlugin(ScrollTrigger);
 
-  const handleMouseMove = (e) => {
-    const bounds = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - bounds.left) / bounds.width;
-    const y = (e.clientY - bounds.top) / bounds.height;
-    setMouse({ x, y });
-  };
-
-
-  useEffect(() => {
-    const timer = setTimeout(() => setHasSettled(true), 600);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const finalPositions = [
-    { top: "-2rem", left: "40%", x: "-100%" },
-    { top: "14rem", left: "25%", x: "-50%" },
-    { top: "14rem", left: "47%", x: "0%" },
-  ];
-  
-
-  import AachiLogo from "../assets/Logos/Aachi-logo.png";
-import video1 from "../assets/v1.mp4";
-import video2 from "../assets/v3.mp4";
-
-const explosionOffsets = [
-  { x: 90, y: 90 },
-  { x: 90, y: 90 },
-  { x: 90, y: 90 },
+const slides = [
+  {
+    date: "1995",
+    title: " Humble Beginning",
+    desc: "Established by Mr. A.D. Padmasingh Isaac, Aachi began its journey to redefine authentic food experiences through spices.",
+    img: t1,
+  },
+  {
+    date: "2001",
+    title: "Product Expansion",
+    desc: "Expanded product range with blended masalas, catering to evolving culinary needs while maintaining purity and quality.",
+    img: t2,
+  },
+  {
+    date: "2006",
+    title: "Regional Growth",
+    desc: "Grew distribution beyond Tamil Nadu, building a strong regional presence across Southern India.",
+    img: t3,
+  },
+  {
+    date: "2011",
+    title: "Diversified Portfolio",
+    desc: "Entered new FMCG categories, diversifying into ready-to-cook and convenience products for modern households.",
+    img: t4,
+  },
+  {
+    date: "2016",
+    title: "Global Reach",
+    desc: "Strengthened export channels, reaching global markets with consistent quality and authentic flavor.",
+    img: t5,
+  },
+  {
+    date: "2021",
+    title: "Tech Advancement",
+    desc: "Adopted state-of-the-art manufacturing and packaging technologies to meet international food safety standards.",
+    img: t6,
+  },
+  {
+    date: "2025",
+    title: "Global Legacy",
+    desc: "Aachi Group today is a trusted global brand, delivering tradition with innovation across food, education, and lifestyle ventures.",
+    img: t7,
+  },
 ];
 
+const TimeLinePinnedScroll = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const sectionRef = useRef(null);
+  const tl = useRef(null);
+  const lineRef = useRef(null);
 
-<section
-        className="relative min-h-screen flex items-center justify-center px-4 md:px-20 bg-white font-sans"
-        onMouseMove={handleMouseMove}
-      >
-        <div
-          ref={rightRef}
-          className="relative flex flex-col items-center justify-center w-full h-full min-h-[500px] px-4 md:px-0 max-w-5xl"
-        >
-          {/* Logo */}
-          <img
-            src={AachiLogo}
-            alt="Aachi Logo"
-            className="absolute float -top-16 right-8 -mr-26 w-[200px] md:w-[260px] drop-shadow-lg z-30"
-          />
+useEffect(() => {
+  // Main pinned timeline
+  tl.current = gsap.timeline({
+    scrollTrigger: {
+      trigger: sectionRef.current,
+      start: "top top",
+      end: () => `+=${window.innerHeight * slides.length}`,
+      pin: true,
+      scrub: true,
+      invalidateOnRefresh: true,
+      onUpdate: (self) => {
+        const progressIndex = Math.floor(self.progress * (slides.length - 1));
+        setCurrentIndex(progressIndex);
 
-          {/* Existing floating cards with parallax */}
-          <motion.div
-            className="card float absolute top-29 right-10 bg-red-600 rounded-xl px-5 py-3 shadow-lg text-white font-bold z-40 w-[110px] md:w-[160px] fade-left"
-            style={{
-              translateX: (mouse.x - 0.5) * 35,
-              translateY: (mouse.y - 0.5) * 20,
-            }}
-          >
-            <span ref={yearsRef} className="block text-xl">
-              0
-            </span>
-            <span className="text-xs opacity-80 font-normal">Years of Excellence</span>
-          </motion.div>
+        if (lineRef.current) {
+          gsap.set(lineRef.current, { scaleY: self.progress });
+        }
+      },
+      // markers: true,
+    },
+  });
 
-          <motion.div
-            className="card float absolute top-28 right-100 bg-[#ffbe25] rounded-xl px-5 py-3 shadow-lg text-white font-bold z-40 w-[110px] md:w-[160px] fade-left"
-            style={{
-              translateX: (mouse.x - 0.5) * 40,
-              translateY: (mouse.y - 0.5) * 25,
-            }}
-          >
-            <span ref={clientsRef} className="block text-xl">
-              0
-            </span>
-            <span className="text-xs opacity-80 font-normal">Happy Clients</span>
-          </motion.div>
+  // Cleanup
+  return () => {
+    if (tl.current) {
+      if (tl.current.scrollTrigger) tl.current.scrollTrigger.kill();
+      tl.current.kill();
+    }
+    ScrollTrigger.getAll().forEach((st) => st.kill());
+  };
+}, []);
 
-          <motion.div
-            className="card float absolute bottom-20 right-0 bg-[#ffbe25] rounded-xl px-5 py-3 shadow-lg text-black font-bold z-40 w-[110px] md:w-[160px] fade-left"
-            style={{
-              translateX: (mouse.x - 0.5) * 30,
-              translateY: (mouse.y - 0.5) * 15,
-            }}
-          >
-            <span ref={futureRef} className="block text-xl">
-              0
-            </span>
-            <span className="text-xs opacity-80 font-normal">Leading the future</span>
-          </motion.div>
+  return (
+    <section
+      ref={sectionRef}
+      className="flex flex-col justify-center px-6 py-4 relative overflow-visible"
+    >
+      <div className="justify-center mx-auto">
+        <p className="text-3xl font-bold text-red-600">Our Journey</p>
+        <p className="mt-2 text-gray-600 mb-4">
+          Aachi Group has come a long way since its inception, evolving through
+          various phases of growth and innovation.
+        </p>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-[40%_60%] items-center relative z-10 min-h-[500px] gap-x-0 overflow-visible">
+        {/* Timeline line + years */}
+        {/* Timeline line + years */}
+<div className="absolute left-4 top-0 h-full w-[4px] bg-gray-300">
+  {/* Red growing line */}
+  <div
+    ref={lineRef}
+    className="absolute top-0 left-0 w-full h-full bg-red-500 origin-top"
+    style={{ transform: "scaleY(0)", transformOrigin: "top" }}
+  />
 
-          <motion.div
-            className="card float absolute bottom-8 left-2 bg-[#ffbe25] rounded-xl px-5 py-3 shadow-lg text-black font-bold z-40 w-[110px] md:w-[160px]"
-            style={{
-              translateX: (mouse.x - 0.5) * 25,
-              translateY: (mouse.y - 0.5) * 10,
-            }}
-          >
-            <span ref={loremRef} className="block text-xl">
-              0
-            </span>
-            <span className="text-xs opacity-80 font-normal">Lorem ipsum dolor</span>
-          </motion.div>
+  {/* Static years */}
+  {slides.map((slide, idx) => (
+    <span
+      key={slide.date}
+      className={`absolute left-6 font-semibold ${
+        idx <= currentIndex ? "text-red-600 font-extrabold" : "text-gray-500"
+      }`}
+      style={{
+        top: `${(idx / (slides.length - 1)) * 100}%`,
+      }}
+    >
+      {slide.date}
+    </span>
+  ))}
+</div>
 
-          {/* New labels with parallax */}
-          <motion.div
-            className="card float absolute -top-28 left-10 bg-red-600 rounded-xl px-5 py-3 shadow-lg text-white font-bold z-40 w-[140px] md:w-[180px]"
-            style={{
-              translateX: (mouse.x - 0.5) * 50,
-              translateY: (mouse.y - 0.5) * 30,
-            }}
-          >
-            <span ref={label1Ref} className="block text-xl">
-              New Label 1
-            </span>
-            <span className="text-xs opacity-80 font-normal">Interactive Parallax</span>
-          </motion.div>
 
-          <motion.div
-            className="card float absolute bottom-44 right-0 bg-red-600 rounded-xl px-5 py-3 shadow-lg text-white font-bold z-40 w-[100px] md:w-[140px]"
-            style={{
-              translateX: (mouse.x - 0.5) * 45,
-              translateY: (mouse.y - 0.5) * 20,
-            }}
-          >
-            <span ref={label2Ref} className="block text-xl">
-              New Label 2
-            </span>
-            <span className="text-xs opacity-80 font-normal"> Movement</span>
-          </motion.div>
-
-          {/* Hero Videos with parallax mouse movement */}
-          {[{ src: video, index: 0 }, { src: video1, index: 1 }, { src: video2, index: 2 }].map(
-            ({ src, index }) => {
-              const videoSizes = [
-                { width: "480px", height: "260px" },
-                { width: "300px", height: "160px" },
-                { width: "320px", height: "180px" },
-              ];
-              const size = videoSizes[index];
-
-              const translateX = (mouse.x - 1) * (20 + index * 30);
-              const translateY = (mouse.y - 1) * (12 + index * 24);
-
-              return (
-                <motion.div
-                  key={index}
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    x: "-50%",
-                    y: "-50%",
-                    translateX,
-                    translateY,
-                  }}
-                  initial={{ scale: 0, x: 0, y: 0, opacity: 0 }}
-                  animate={
-                    hasSettled
-                      ? {
-                          scale: 1,
-                          x: finalPositions[index].x,
-                          y: 0,
-                          opacity: 1,
-                          top: finalPositions[index].top,
-                          left: finalPositions[index].left,
-                          transition: { duration: 0.8, ease: "easeOut" },
-                        }
-                      : {
-                          scale: 1.3,
-                          x: explosionOffsets[index].x,
-                          y: explosionOffsets[index].y,
-                          opacity: 1,
-                          transition: { duration: 0.5, ease: "easeOut" },
-                        }
-                  }
-                >
-                  <video
-                    src={src}
-                    autoPlay
-                    loop
-                    muted
-                    alt={`Hero Industrial ${index + 1}`}
-                    className="float"
-                    style={{
-                      width: size.width,
-                      height: size.height,
-                      objectFit: "cover",
-                      borderRadius: "0.5rem",
-                      boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
-                      zIndex: 10,
-                    }}
-                  />
-                </motion.div>
-              );
-            }
-          )}
-
-          {/* Additional Decorative Shapes at different positions */}
-          <div className="absolute -top-20 left-1/4 w-14 h-14 bg-red-600 rounded-full opacity-70 animate-pulse z-20" />
-          {/* <div className="absolute bottom-32 right-1/3 w-10 h-10 bg-yellow-400 rounded-lg rotate-12 z-15" /> */}
-          <div className="absolute top-1/4 right-1/5 w-8 h-8 bg-yellow-500 rounded-full opacity-60 animate-bounce z-10" />
-          {/* <div className="absolute bottom-40 left-1/5 w-6 h-6 bg-red-400 rounded-full opacity-80 z-10" /> */}
-          {/* <div className="absolute top-10 right-1/6 w-12 h-12 bg-red-400 rounded-lg opacity-60 z-15" /> */}
-
-          {/* Existing decorative shapes left unchanged */}
-          <div className="absolute top-30 right-1/4 w-12 h-12 bg-[#ffbe25] rotate-45 z-20 transform -translate-x-1/2 -translate-y-1/2" />
-          <div className="absolute top-12 right-1/4 w-6 h-6 bg-[#ffd6d6] rounded-full z-10 animate-pulse" />
-          <div className="absolute top-2 w-8 h-8 bg-[#ffe396] rounded-full z-10 animate-bounce" />
-          <div className="absolute bottom-40 right-2 w-10 h-10 bg-red-100 rounded-full z-10" />
-          <div className="absolute top-1/3 right-1/4 w-6 h-6 bg-red-600 rounded-full opacity-70 z-10" />
+        {/* Left Column - Content Card */}
+        <div className="absolute top-0 left-30 relative z-20 max-w-lg h-[350px] shadow-lg bg-white p-8 w-full">
+          <div className="h-full flex flex-col p-8 transition-opacity duration-700 ease-in-out">
+            <p className="text-red-600 font-semibold text-sm">
+              {slides[currentIndex].date}
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mt-2">
+              {slides[currentIndex].title}
+            </h2>
+            <p className="mt-4 text-gray-600 text-lg">
+              {slides[currentIndex].desc}
+            </p>
+          </div>
         </div>
-      </section>
+
+        {/* Right Column - Image */}
+        <div className="relative h-[400px] md:h-[600px] w-full overflow-hidden -ml-26">
+          <img
+            src={slides[currentIndex].img}
+            alt={`Slide ${currentIndex}`}
+            className="w-full h-full object-cover transition-opacity duration-500 ease-in-out"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default TimeLinePinnedScroll;

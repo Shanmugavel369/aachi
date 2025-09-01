@@ -7,6 +7,8 @@ import image1 from "../asset/photo/h1.jpg";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import TimelineSection from "../../Reuse/TimeLine";
+import MidSection from "../../Reuse/MidSection";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -116,16 +118,16 @@ const Home = () => {
       });
     };
 
-    animateNumber(premiumRef, 5000);
-    animateNumber(customerRef, 1);
+    animateNumber(premiumRef, 5);
+    animateNumber(customerRef, 10);
     animateNumber(awardsRef, 60);
     animateNumber(projectsRef, 231);
     animateNumber(countRef, 1995);
-    animateNumber(oneRef, 100000);
-    animateNumber(twoRef, 200);
-    animateNumber(threeRef, 14);
+    animateNumber(oneRef, 1);
+    animateNumber(twoRef, 231);
+    animateNumber(threeRef, 65);
     animateNumber(fourRef, 30);
-    animateNumber(fiveRef, 50);
+    animateNumber(fiveRef, 12);
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
@@ -158,62 +160,82 @@ const Home = () => {
             {/* Square Div 1 */}
             <div className="absolute top-0 left-40 w-45 h-36 bg-red-600 shadow-lg flex items-center justify-center text-center p-4">
               <p className="font-bold text-lg">
-                <span ref={oneRef} className="text-white">
+                <span ref={oneRef} className="text-white text-4xl">
                   0
                 </span>
-                <span className="text-white"> Retail Outlets</span>
+                <span className="text-white text-4xl">M+ <br /> <span className="text-sm">Retailers</span></span>
               </p>
             </div>
 
             {/* Square Div 2 */}
             <div className="absolute top-10 left-0 w-45 h-36 bg-gray-800 shadow-lg flex items-center justify-center text-center p-4">
               <p className="font-bold text-lg">
-                <span ref={twoRef} className="text-white">
+                <span ref={twoRef} className="text-white text-4xl">
                   0
                 </span>
-                <span className="text-white">+ Products</span>
+                <span className="text-white text-4xl">+ </span>
+                <br />
+                <span className="text-white"> Products</span>
               </p>
             </div>
 
             {/* Square Div 3 */}
             <div className="absolute top-38 left-20 w-36 h-40 bg-yellow-500 shadow-lg flex items-center justify-center text-center p-4">
               <p className="font-bold text-lg">
-                <span ref={threeRef} className="text-black">
+                <span ref={threeRef} className="text-black text-4xl">
                   0
                 </span>
-                <span className="text-black"> States</span>
+                <span className="text-black text-4xl">+ </span>
+                <br />
+                <span className="text-black"> Countries</span>
               </p>
             </div>
 
             {/* Square Div 4 */}
             <div className="absolute top-48 left-65 w-28 h-28 bg-blue-600 shadow-lg flex items-center justify-center text-center p-4">
               <p className="font-bold text-lg">
-                <span ref={fourRef} className="text-white">
+                <span ref={fourRef} className="text-white text-3xl">
                   0
                 </span>
-                <span className="text-white"> Years Experience</span>
+                <span className="text-white text-3xl">+ </span>
+                <br />
+                
+                <span className="text-white">Years Experience</span>
               </p>
             </div>
 
             {/* Square Div 5 */}
             <div className="absolute left-90 w-44 h-28 bg-gray-800 shadow-lg flex items-center justify-center text-center p-4">
               <p className="font-bold text-lg">
-                <span ref={fiveRef} className="text-white">
+                <span ref={fiveRef} className="text-white text-4xl">
                   0
                 </span>
+                <br />
                 <span className="text-white"> Awards</span>
               </p>
             </div>
 
             {/* Square Div 6 */}
             <div className="absolute top-80 left-15 w-40 h-32 bg-green-600 shadow-lg flex items-center justify-center text-center p-4">
-              <p className="text-white font-bold text-lg">Global Exports</p>
+              <p className="font-bold text-lg">
+                <span ref={premiumRef} className="text-white text-4xl">
+                  0
+                </span>
+                <span className="text-white text-4xl">k+ </span>
+                <br />
+                <span className="text-white"> Distributors</span>
+              </p>
             </div>
 
             {/* Square Div 7 */}
             <div className="absolute top-80 left-60 w-32 h-44 bg-purple-600 shadow-lg flex items-center justify-center text-center p-4">
-              <p className="text-white font-bold text-lg">
-                Trusted by Millions
+              <p className="font-bold text-lg">
+                <span ref={customerRef} className="text-white text-4xl">
+                  0
+                </span>
+                <span className="text-white text-4xl">M+ </span>
+                <br />
+                <span className="text-white"> Happy Customers</span>
               </p>
             </div>
           </motion.div>
@@ -269,8 +291,6 @@ const Home = () => {
               src={image1}
               alt="image1"
               className="w-100 h-70 object-cover -ml-22 -mb-16"
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              transition={{ duration: 0.3 }}
             />
 
             <motion.video
@@ -296,131 +316,20 @@ const Home = () => {
       </section>
 
       {/* USP Section */}
-      <section className="py-20 px-4 md:px-16 bg-white font-serif">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-6 gap-x-8 items-stretch">
-          {/* Left: Headline + Stats */}
-          <div className="md:col-span-2 flex flex-col justify-between space-y-10">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight text-gray-900 mb-4 fade-left">
-                A Legacy of
-                <br />
-                Quality & Care
-              </h2>
-              <p className="text-gray-700 text-lg mb-8 fade-left">
-                With decades of expertise, we create products that define trust.
-              </p>
-              <div className="mt-3">
-                <p className="text-amber-700 italic text-[17px] fade-left">
-                  Every milestone achieved reflects our customer’s confidence in
-                  us.
-                </p>
-              </div>
-              <div className="flex gap-6 relative -mb-8 z-20">
-                <div className="bg-gray-100 p-4 rounded-lg shadow text-center min-w-[110px]">
-                  <div
-                    ref={premiumRef}
-                    className="text-xl font-bold text-teal-700"
-                  >
-                    0
-                  </div>
-                  <div className="text-[15px] text-gray-500">
-                    Distributors Across
-                  </div>
-                </div>
-                <div className="bg-gray-100 p-4 rounded-lg shadow text-center min-w-[110px]">
-                  <div className="text-xl font-bold text-teal-700">1M</div>
-                  <div className="text-[15px] text-gray-500">
-                    Retailers Outlets
-                  </div>
-                </div>
-                <div className="bg-gray-100 p-4 rounded-lg shadow text-center min-w-[110px]">
-                  <div
-                    ref={awardsRef}
-                    className="text-xl font-bold text-teal-700"
-                  >
-                    0
-                  </div>
-                  <div className="text-[15px] text-gray-500">
-                    Global Presence
-                  </div>
-                </div>
-                <div className="bg-gray-100 p-4 rounded-lg shadow text-center min-w-[110px]">
-                  <div
-                    ref={projectsRef}
-                    className="text-xl font-bold text-teal-700"
-                  >
-                    0
-                  </div>
-                  <div className="text-[15px] text-gray-500">
-                    Total Products
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Center Image */}
-          <div className="md:col-span-2 flex items-center justify-center -mb-8 fade-up">
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <img
-                src={AbiSir}
-                alt="Visual Center"
-                className="max-h-[300px] object-cover rounded-md"
-              />
-            </div>
-          </div>
-
-          {/* Right: Video + Approach */}
-          <div className="md:col-span-2 flex flex-col justify-between fade-right">
-            <div className="mb-6">
-              <div className="relative w-full h-[500px] perspective card-hover">
-                <div className="card-inner w-full h-full relative">
-                  {/* Front Side */}
-                  <div className="card-front w-full max-w-md h-64 rounded-md shadow overflow-hidden">
-                    <img
-                      src={I}
-                      alt="image"
-                      className="w-full h-full object-cover rounded-md"
-                    />
-                  </div>
-                  {/* Back Side */}
-                  <div className="card-back bg-gray-200 rounded-md p-6 shadow-lg flex flex-col justify-center gap-4 overflow-auto">
-                    <h3 className="text-xl font-bold">
-                      Spice Up Every Meal with Aachi
-                    </h3>
-                    <p className="text-gray-700 text-sm leading-relaxed">
-                      Aachi’s legacy grows through quality, trust, and flavors
-                      uniting homes everywhere. Aachi Masala is a trusted name
-                      in Indian households, known for bringing authentic flavors
-                      to every kitchen. With a wide range of spice blends and
-                      ready-to-cook products, Aachi ensures convenience without
-                      compromising on taste. Rooted in tradition and crafted
-                      with care, each product is designed to meet the evolving
-                      needs of modern families while preserving the rich
-                      culinary heritage of India. From everyday meals to festive
-                      feasts, Aachi adds a touch of home to every dish. Its
-                      commitment to quality, hygiene, and affordability has made
-                      it a preferred choice for millions seeking flavorful,
-                      wholesome, and easy-to-make food solutions.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <video
-                src="assets/h2.mp4"
-                autoPlay
-                loop
-                muted
-                className="w-[500px] h-[200px]"
-              />
-            </div>
-          </div>
-        </div>
+      <section className="mx-auto justify-center flex px-6 py-4 mt-10">
+        <div className="mb-10 text-center max-w-md">
+        <p className="text-3xl font-bold mb-2 text-red-600">Aachi Key Moments</p>
+        <p className="text-gray-600 text-sm">
+          Celebrating the moments that define the spirit of the Aachi family.
+        </p>
+      </div>
       </section>
 
+      <MidSection />
+
       <TimelineSection />
+
+      
     </div>
   );
 };
